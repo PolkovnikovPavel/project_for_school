@@ -104,7 +104,6 @@ class Button(Object):
                     self.obj = self.canvas.create_image((self.x + 0.5 * self.w, self.y + 0.5 * self.h), image=self.img)
 
 
-
 class Group():
     def __init__(self):
         self.all_objects = []
@@ -138,4 +137,37 @@ class Group():
             for object in self.all_objects:
                 if isinstance(object, Button):
                     object.check(x, y, is_clik)
+
+
+class Level():
+    def __init__(self, canvas, level, go_to_start_menu):
+        self.canvas = canvas
+        self.buttons = Group()
+
+        btn = Button(pw(1), ph(1), pw(2), pw(2), 'home.png', canvas, 'home_2.png', go_to_start_menu)
+        self.buttons.add_objects(btn)
+
+
+    def start(self):
+        dx = 0
+        timer = time.time()
+        while True:
+            dx += 3
+            obj.go_to(obj.x + dx, 0)
+            if obj.x > -1:
+                break
+            self.canvas.update()
+            dt = time.time() - timer
+            dt = (1 / 60) - dt
+            if dt > 0:
+                time.sleep(dt)
+            print(1 / (time.time() - timer))
+            timer = time.time()
+        obj.go_to(pw(-200), 0)
+
+
+class Levels():
+    def __init__(self, canvas, all_names, all_funktions, bg):
+        self.canvas = canvas
+
 
